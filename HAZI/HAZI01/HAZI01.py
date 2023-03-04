@@ -94,6 +94,7 @@ def by_parity(input_list) -> dict:
     for item in input_list:
         if item % 2 == 0:
             result["even"].append(item)
+            result["event"].append(item)
         else:
             result["odd"].append(item)
     return result
