@@ -1,8 +1,5 @@
 import numpy as np
 
-test_array = np.array([[1, 2], [3, 4]])
-print(test_array)
-
 
 # Készíts egy függvényt ami létre hoz egy nullákkal teli numpy array-t.
 # Paraméterei: mérete (tupel-ként), default mérete pedig legyen egy (2,2)
