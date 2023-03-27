@@ -177,7 +177,7 @@ függvény neve: math_bar_plot
 '''
 
 
-def math_bar_plot(df: pd.DataFrame) -> plt.figure.Figure:
+def math_bar_plot(df: pd.DataFrame):
     new_df = df.copy()
     fig, ax = plt.subplots()
     new_df = new_df.groupby('gender')['math score'].mean()
@@ -203,7 +203,7 @@ függvény neve: writing_hist
 '''
 
 
-def writing_hist(df_data) -> plt.Figure:
+def writing_hist(df_data):
     new_df = df_data.copy()
     fig, ax = plt.subplots()
     ax.hist(new_df['writing score'])
@@ -228,7 +228,7 @@ függvény neve: ethnicity_pie_chart
 '''
 
 
-def ethnicity_pie_chart(df_data) -> plt.Figure:
+def ethnicity_pie_chart(df_data):
     new_df = df_data.copy()
     ethnicity_counts = new_df['race/ethnicity'].value_counts()
     total_count = new_df.shape[0]
