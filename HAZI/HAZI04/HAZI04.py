@@ -21,7 +21,6 @@ def csv_to_df(path: str) -> pd.DataFrame:
     return pd.read_csv(path)
 
 
-# test_df = csv_to_df("StudentsPerformance.csv")
 '''
 Készíts egy függvényt, ami egy DataFrame-et vár paraméterként, 
 és átalakítja azoknak az oszlopoknak a nevét nagybetűsre amelyiknek neve nem tartalmaz 'e' betüt.
@@ -204,7 +203,7 @@ függvény neve: writing_hist
 '''
 
 
-def writing_hist(df_data):  # -> plt.Figure:
+def writing_hist(df_data) -> plt.Figure:
     new_df = df_data.copy()
     fig, ax = plt.subplots()
     ax.hist(new_df['writing score'])
@@ -229,7 +228,7 @@ függvény neve: ethnicity_pie_chart
 '''
 
 
-def ethnicity_pie_chart(df_data):  # -> plt.Figure:
+def ethnicity_pie_chart(df_data) -> plt.Figure:
     new_df = df_data.copy()
     ethnicity_counts = new_df['race/ethnicity'].value_counts()
     total_count = new_df.shape[0]
