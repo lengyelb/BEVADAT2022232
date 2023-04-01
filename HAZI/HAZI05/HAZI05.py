@@ -18,6 +18,10 @@ class KNNClassifier:
 
         self.y_preds: Optional[pd.DataFrame] = None
 
+    @property
+    def k_neighbors(self):
+        return self.k
+
     @staticmethod
     def load_csv(path: str) -> Tuple[pd.DataFrame, pd.DataFrame]:
         dataset = pd.read_csv(path, delimiter=',', header=None)
@@ -25,10 +29,6 @@ class KNNClassifier:
         x, y = dataset.iloc[:, :4], dataset.iloc[:, -1]
 
         return x, y
-
-    @property
-    def k_neighbors(self):
-        return self.k
 
     def train_test_split(self, features: pd.DataFrame, labels: pd.DataFrame):
         test_size = int(len(features) * self.test_split_ratio)
