@@ -2,7 +2,6 @@ from typing import Optional, Tuple
 
 import numpy as np
 import seaborn as sns
-from matplotlib import pyplot
 from scipy.stats import mode
 from sklearn.metrics import confusion_matrix
 
@@ -19,6 +18,10 @@ class KNNClassifier:
         self.y_test: Optional[np.ndarray] = None
 
         self.y_preds: Optional[np.ndarray] = None
+
+    @property
+    def k_neighbors(self):
+        return self.k
 
     @staticmethod
     def load_csv(path: str, clean_dataset: bool = False) -> Tuple[np.ndarray, np.ndarray]:
@@ -70,19 +73,3 @@ class KNNClassifier:
         conf_matrix = confusion_matrix(self.y_test, self.y_preds)
         sns.heatmap(conf_matrix, annot=True)
 
-    @property
-    def k_neighbors(self):
-        return self.k
-
-
-# # region testing
-# csv_path = "datasets/iris.csv"
-# x_test, y_test = KNNClassifier.load_csv(csv_path, True)
-#
-# knn = KNNClassifier(3, 0.2)
-# knn.train_test_split(x_test, y_test)
-# knn.predict(knn.x_test)
-# print(knn.accuracy())
-# knn.confusion_matrix()
-# pyplot.show()
-# # endregion
