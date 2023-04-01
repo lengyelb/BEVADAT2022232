@@ -2,6 +2,7 @@ from typing import Optional, Tuple
 
 import pandas as pd
 import seaborn as sns
+from matplotlib import pyplot
 from sklearn.metrics import confusion_matrix
 
 
@@ -69,3 +70,15 @@ class KNNClassifier:
             accuracies.append((i, round(KNNClassifier.accuracy(self), 2)))
         return max(accuracies)
 
+
+# # region testing
+# csv_path = "datasets/iris.csv"
+# x_test, y_test = KNNClassifier.load_csv(csv_path)
+#
+# knn = KNNClassifier(3, 0.2)
+# knn.train_test_split(x_test, y_test)
+# knn.predict(knn.x_test)
+# print(knn.accuracy())
+# knn.confusion_matrix()
+# pyplot.show()
+# # endregion
