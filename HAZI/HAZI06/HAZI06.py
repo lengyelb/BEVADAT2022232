@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from NJCleaner import NJCleaner
 from GYAK.GYAK06.GYAK06 import DecisionTreeClassifier
 
+
 base_csv_path = "datasets/NJ_Transit+Amtrak.csv"
 clean_csv_path = "datasets/NJ.csv"
 
