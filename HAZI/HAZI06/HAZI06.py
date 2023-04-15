@@ -24,21 +24,34 @@ classifier.fit(X_train, Y_train)
 Y_pred = classifier.predict(X_test)
 print(accuracy_score(Y_test, Y_pred))
 
-# results = []
-#
-# for min_sample_split in range(1, 6):
-#     for max_depth in range(1, 5):
-#         classifier = DecisionTreeClassifier(min_samples_split=min_sample_split, max_depth=max_depth)
-#         classifier.fit(X_train, Y_train)
-#
-#         Y_pred = classifier.predict(X_test)
-#         intermediate_result = (min_sample_split, max_depth, accuracy_score(Y_test, Y_pred))
-#         print(intermediate_result)
-#         results.append(intermediate_result)
-#
-# print(results)
-# print(max(results, key=lambda x: x[2]))
-# with open("datasets/results.txt", 'w') as results_file:
-#     sorted_results = sorted(results, key=lambda x: x[2], reverse=True)
-#     for result_line in sorted_results:
-#         results_file.write(', '.join(map(str, result_line)) + "\n")
+"""
+A tanításom elég könyen ment. Nehézségekbe nem nagyon ütköztem. Az egyetlen
+ami érdekes volt hogy a may depth előszőr túl nagy értékeket engedtem meg neki,
+így errort kaptam a modellben. Miután ezt javítottam már minden jó volt.
+A legjobb értékek kereséséhez grid search-öt használtam, min sample split 1-5,
+max depth pedig 1-4 range-el. Érdekes mód azt találtam hogy a min sample split
+nem befolyásolta az eredményeket ebben a rangeben. A max depth azonban igen, itt 4-nél
+kaptam a legjobb eredményeket.
+
+min_sample_split, max_depth, accuracy:
+1, 4, 0.7849166666666667
+2, 4, 0.7849166666666667
+3, 4, 0.7849166666666667
+4, 4, 0.7849166666666667
+5, 4, 0.7849166666666667
+1, 3, 0.7839166666666667
+2, 3, 0.7839166666666667
+3, 3, 0.7839166666666667
+4, 3, 0.7839166666666667
+5, 3, 0.7839166666666667
+1, 2, 0.7823333333333333
+2, 2, 0.7823333333333333
+3, 2, 0.7823333333333333
+4, 2, 0.7823333333333333
+5, 2, 0.7823333333333333
+1, 1, 0.7773333333333333
+2, 1, 0.7773333333333333
+3, 1, 0.7773333333333333
+4, 1, 0.7773333333333333
+5, 1, 0.7773333333333333
+"""
