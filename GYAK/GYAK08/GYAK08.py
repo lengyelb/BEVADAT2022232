@@ -1,32 +1,27 @@
-import numpy as np
+import pandas as pd
 
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from matplotlib import pyplot as plt
 
-class LinearRegression:
-    def __init__(self, epochs: int = 1000, lr: float = 1e-3):
-        self.epochs = epochs
-        self.lr = lr
+from LinearRegressionSkeleton import LinearRegression
 
-        self.m = 0
-        self.c = 0
+iris = load_iris()
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
 
-    def fit(self, x: np.array, y: np.array):
-        n = float(len(x))  # Number of elements in X
+x_example = df['petal width (cm)'].values
+y_example = df['sepal length (cm)'].values
 
-        # Performing Gradient Descent
-        losses = []
-        for i in range(self.epochs):
-            y_pred = self.m * x + self.c
+x_train, x_test, y_train, y_test = train_test_split(x_example, y_example, test_size=0.2, random_state=42)
 
-            residuals = y - y_pred
-            loss = np.sum(residuals ** 2)
-            losses.append(loss)
-            D_m = (-2 / n) * sum(x * residuals)
-            D_c = (-2 / n) * sum(residuals)
-            self.m = self.m - self.lr * D_m
-            self.c = self.c - self.lr * D_c
+ln_model = LinearRegression()
+ln_model.fit(x_example, y_example)
 
-    def predict(self, x):
-        return self.m * x + self.c
+y_pred = ln_model.predict(x_example)
+eva = ln_model.evaluate(x_test, y_test)
 
-    def evaluate(self, x_test, y_test):
-        return np.mean((self.predict(x_test) - y_test) ** 2)
+print(eva)
+
+plt.scatter(x_test, y_test)
+plt.plot([min(x_test), max(x_test)], [min(y_pred), max(y_pred)], color='red')
+plt.show()
