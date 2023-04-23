@@ -11,13 +11,11 @@ from sklearn.linear_model import LinearRegression, LogisticRegression
 
 
 def load_iris_data() -> sklearn.utils.Bunch:
-    iris_data = load_iris()
-    return iris_data
+    return load_iris()
 
 
 def check_data(iris: sklearn.utils.Bunch) -> pandas.core.frame.DataFrame:
-    iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
-    return iris_df.head()
+    return pd.DataFrame(data=iris.data, columns=iris.feature_names).head()
 
 
 def linear_train_data(iris: sklearn.utils.Bunch) -> (np.ndarray, np.ndarray):
@@ -34,15 +32,11 @@ def logistic_train_data(iris: sklearn.utils.Bunch) -> (np.ndarray, np.ndarray):
     X = iris_df.drop(['target'], axis=1).values
     y = iris_df['target'].values
 
-    X = X[y != 2]
-    y = y[y != 2]
-
-    return X, y
+    return X[y != 2], y[y != 2]
 
 
 def split_data(X, y) -> (np.ndarray, np.ndarray, np.ndarray, np.ndarray):
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    return X_train, X_test, y_train, y_test
+    return train_test_split(X, y, test_size=0.2, random_state=42)
 
 
 def train_linear_regression(X_train, y_train):  # -> sklearn.linear_model._base.LinearRegression:
@@ -58,8 +52,8 @@ def train_logistic_regression(X_train, y_train):  # -> sklearn.linear_model._bas
 
 
 def predict(model, X_test) -> np.ndarray:
-    y_pred = model.predict(X_test)
-    return y_pred
+    return model.predict(X_test)
+
 
 
 def plot_actual_vs_predicted(y_test, y_pred):  # -> plt.figure.Figure:
