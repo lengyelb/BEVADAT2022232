@@ -29,7 +29,7 @@ class Dense:
         self.bias = np.random.random(size=self.n_output)
 
     def forward_pass_a(self, X):
-        return np.dot(X, self.W) + self.bias
+        return X.dot(self.W) + self.bias
 
 
 # input_data = np.array([[1, 2, 3, 4, 5]])
@@ -41,7 +41,7 @@ class Dense:
 
 class ReLU():
     def forward_pass(self, x):
-        return max(0, x)
+        return np.maximum(0, x)
 
 
 # activation = ReLU()
