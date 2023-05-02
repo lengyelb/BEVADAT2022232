@@ -39,7 +39,7 @@ class Dense:
 # print(output)
 
 
-class ReLU():
+class ReLU:
     def forward_pass(self, x):
         return np.maximum(0, x)
 
